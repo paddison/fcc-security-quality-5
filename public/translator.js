@@ -12,7 +12,10 @@ const clearBtn = document.getElementById("clear-btn");
 let str = "draper Like a high tech anti-clockwise draper. 0.30";
 let transStr = str;
 
-
+// add small sanitize function to escape <>
+let sanitize = (str) => {
+  return str.replace(/</g, "&lt").replace(/>/g, "&gt");
+}
 // declaring the handler functions
 
 // function for translating from americanOnly, britishOnly, and amercian to british from americanToBritishSpelling Objects
@@ -162,7 +165,7 @@ let clear = () => {
 }
 
 translateBtn.addEventListener("click", () => {
-  evalTranslation(input.value, lan.value);
+  evalTranslation(sanitize(input.value), lan.value);
 })
 
 clearBtn.addEventListener("click", () => {
